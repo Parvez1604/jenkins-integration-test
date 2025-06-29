@@ -25,7 +25,9 @@ pipeline {
 
         stage('Save Log') {
             steps {
-                sh 'echo "Run complete for ${params.USERNAME}" > result.txt'
+                sh '''
+                echo "Run complete for ${params.USERNAME}" > result.txt
+                '''
                 archiveArtifacts artifacts: 'result.txt'
             }
         }
