@@ -1,17 +1,21 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'USERNAME', defaultValue: 'Parvez', description: 'Enter your name')
+    }
+
     stages {
-        stage('Clone Repo') {
+        stage('Welcome') {
             steps {
-                echo 'Cloning repository...'
+                echo "Hello, ${params.USERNAME}!"
             }
         }
 
-        stage('Run Script') {
+        stage('System Info') {
             steps {
                 sh '''
-                    echo "Running system info..."
+                    echo "Gathering system info..."
                     uname -a
                     df -h
                     free -m
@@ -19,12 +23,11 @@ pipeline {
             }
         }
 
-        stage('Archive Logs') {
+        stage('Save Log') {
             steps {
-                sh 'echo "Pipeline completed" > output.txt'
-                archiveArtifacts artifacts: 'output.txt', onlyIfSuccessful: true
+                sh 'echo "Run complete for ${params.USERNAME}" > result.txt'
+                archiveArtifacts artifacts: 'result.txt'
             }
         }
     }
 }
-
