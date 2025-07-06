@@ -32,8 +32,9 @@ pipeline {
                 sh """
 
                 echo "Run complete for ${params.USERNAME}" > result.txt'
+                 """
                 archiveArtifacts artifacts: 'result.txt'
-                """
+               
             }
         }
     }
