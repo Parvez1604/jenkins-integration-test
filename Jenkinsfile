@@ -8,25 +8,32 @@ pipeline {
     stages {
         stage('Welcome') {
             steps {
+                sh """
+                #!bin/bash
                 echo "Hello, ${params.USERNAME}!"
+                """
             }
         }
 
         stage('System Info') {
             steps {
-                sh '''
+                sh """
+                #!bin/bash
                     echo "Gathering system info..."
                     uname -a
                     df -h
                     free -m
-                '''
+                """
             }
         }
 
         stage('Save Log') {
             steps {
-                sh 'echo "Run complete for ${params.USERNAME}" > result.txt'
+                sh """
+                #!bin/bash
+                echo "Run complete for ${params.USERNAME}" > result.txt'
                 archiveArtifacts artifacts: 'result.txt'
+                """
             }
         }
     }
