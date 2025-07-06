@@ -9,7 +9,7 @@ pipeline {
         stage('Welcome') {
             steps {
                 sh """
-                #!/bin/bash
+
                 echo "Hello, ${params.USERNAME}!"
                 """
             }
@@ -18,7 +18,7 @@ pipeline {
         stage('System Info') {
             steps {
                 sh """
-                #!/bin/bash
+
                     echo "Gathering system info..."
                     uname -a
                     df -h
@@ -30,7 +30,7 @@ pipeline {
         stage('Save Log') {
             steps {
                 sh """
-                #!/bin/bash
+
                 echo "Run complete for ${params.USERNAME}" > result.txt'
                 archiveArtifacts artifacts: 'result.txt'
                 """
