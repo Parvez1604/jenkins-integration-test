@@ -31,7 +31,7 @@ pipeline {
             steps {
                 sh """
 
-                echo "Run complete for ${params.USERNAME}" > result.txt'
+                echo "Run complete for ${params.USERNAME}" > 'result.txt'
                  """
                 archiveArtifacts artifacts: 'result.txt'
                
