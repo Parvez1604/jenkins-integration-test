@@ -29,7 +29,7 @@ pipeline {
         stage('Notify') {
     steps {
         sh"""
-        echo "Sending email to devops-team@company.com..."\
+        echo "Sending email to parwesking1233@gmail.com"\
         """
     }
 }
