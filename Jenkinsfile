@@ -26,6 +26,14 @@ pipeline {
                 """
             }
         }
+        stage('Notify') {
+    steps {
+        sh"""
+        echo "Sending email to devops-team@company.com..."\
+        """
+    }
+}
+
 
         stage('Save Log') {
             steps {
