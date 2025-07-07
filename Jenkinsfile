@@ -33,6 +33,19 @@ pipeline {
         """
     }
 }
+        stage('Validation') {
+    steps {
+        script {
+            def output = sh(script: 'free -m | grep Mem | awk \'{print $2}\'', returnStdout: true).trim()
+            if (output.toInteger() < 1000) {
+                error("Memory too low: ${output}MB — stopping build")
+            } else {
+                echo "Memory OK: ${output}MB"
+            }
+        }
+    }
+}
+
 
 
         stage('Save Log') {
